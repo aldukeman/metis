@@ -8,9 +8,8 @@
 
 #include <iostream>
 #include <new>
+#include <sys/resource.h>
 using namespace std;
-
-
 
 int main(int argc, const char **argv) {
     register_event_handlers();
@@ -47,6 +46,14 @@ int main(int argc, const char **argv) {
 
     cout << "Search time: " << search_timer << endl;
     cout << "Total time: " << g_timer << endl;
+
+    if(g_timing_filename != "")
+    {
+      struct rusage r;
+      getrusage(RUSAGE_SELF, &r);
+      std::ofstream output(g_timing_filename.c_str());
+      output << r.ru_maxrss << "," << g_timer;
+    }
 
     if (engine->found_solution()) {
         exit_with(EXIT_PLAN_FOUND);

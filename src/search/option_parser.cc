@@ -238,6 +238,9 @@ SearchEngine *OptionParser::parse_cmd_line(
         } else if (arg.compare("--plan-file") == 0) {
             ++i;
             g_plan_filename = argv[i];
+        } else if (arg.compare("-y") == 0 || arg.compare("--timing") == 0) {
+            ++i;
+            g_timing_filename = argv[i];
         } else {
             cerr << "unknown option " << arg << endl << endl;
             cout << OptionParser::usage(argv[0]) << endl;
@@ -267,6 +270,8 @@ string OptionParser::usage(string progname) {
         "    Use random seed SEED\n\n"
         "--plan-file FILENAME\n"
         "    Plan will be output to a file called FILENAME\n\n"
+        "-y | --timing FILENAME\n"
+        "    Memory and timing information will be output to FILENAME\n\n"
         "See http://www.fast-downward.org/ for details.";
     return usage;
 }

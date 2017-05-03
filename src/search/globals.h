@@ -67,6 +67,7 @@ extern CausalGraph *g_causal_graph;
 extern LegacyCausalGraph *g_legacy_causal_graph;
 extern Timer g_timer;
 extern std::string g_plan_filename;
+extern std::string g_timing_filename;
 extern RandomNumberGenerator g_rng;
 
 extern GraphCreator* g_symmetry_graph;
