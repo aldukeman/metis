@@ -204,7 +204,11 @@ DEPEND = g++ -MM
 
 CCOPT = -Iext
 CCOPT += -g
+ifeq ($(BITS), 64)
+CCOPT += -m64
+else
 CCOPT += -m32
+endif
 CCOPT += -Wall -W -Wno-sign-compare -Wno-deprecated -ansi -pedantic -Werror -DSTATE_VAR_BYTES=$(STATE_VAR_BYTES)
 
 ## The following lines contain workarounds for bugs when
@@ -225,7 +229,11 @@ ifdef HAVE_GCC_4_5
 endif
 
 LINKOPT  = -g
+ifeq ($(BITS), 64)
+LINKOPT += -m64
+else
 LINKOPT += -m32
+endif
 LINKOPT +=
 
 POSTLINKOPT =

@@ -80,7 +80,12 @@ DEPEND = g++ -MM
 ## (POSTLINKOPT are options that appear *after* all object files.)
 
 CCOPT  =
+ifeq ($(BITS), 64)
+CCOPT += -m64
+else
 CCOPT += -m32
+endif
+
 CCOPT += -g
 CCOPT += -Wall -W -Wno-sign-compare -Wno-deprecated -ansi -pedantic -Werror
 
@@ -102,7 +107,11 @@ ifdef HAVE_GCC_4_5
 endif
 
 LINKOPT  =
+ifeq ($(BITS), 64)
+LINKOPT += -m64
+else
 LINKOPT += -m32
+endif
 LINKOPT += -g
 
 POSTLINKOPT =

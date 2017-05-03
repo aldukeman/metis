@@ -5,5 +5,5 @@
 module load libs/gcc-4.7.2/i386
 
 cd src
-./build_all
+./build_all -j12
 cd ..
